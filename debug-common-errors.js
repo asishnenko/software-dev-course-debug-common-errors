@@ -24,7 +24,8 @@ Think about which debugging methods you found most useful and how you might appl
 // Description:
 // This program is intended to display a simple prompt in the console but fails to run.
 
-console.log("Welcome to the bootcamp
+// Fixed: Added missing closing quote and semicolon to complete the string
+console.log("Welcome to the bootcamp");
 
 // What’s Wrong?
 
@@ -35,9 +36,15 @@ console.log("Welcome to the bootcamp
 
 let numbers = [2, 4, "eight"];
 for (let i = 0; i < numbers.length; i++) {
-  let doubled = numbers[i] * 2;
-  console.log(doubled);
+  // Fixed: Added type check to avoid multiplying non-numeric values
+  if (typeof numbers[i] === "number") {
+    let doubled = numbers[i] * 2;
+    console.log(doubled);
+  } else {
+    console.log(`Cannot double "${numbers[i]}" because it's not a number.`);
+  }
 }
+
 
 // What’s Wrong?
 
@@ -50,13 +57,16 @@ for (let i = 0; i < numbers.length; i++) {
 function isPrime(num) {
   if (num < 2) return false;
   for (let i = 2; i < num; i++) {
+    // Fixed: Changed return true to return false to correctly detect non-prime numbers
     if (num % i === 0) {
-      return true;  // Supposed to indicate num is NOT prime
+      return false;
     }
   }
-  return false; // Supposed to indicate num IS prime
+  // Fixed: Changed return false to return true for correct result when number is prime
+  return true;
 }
 
-console.log(isPrime(7)); // Expected true but gets false
+console.log(isPrime(7)); // Expected output: true
+
 
 // What’s Wrong?
